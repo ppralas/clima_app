@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/domain/notifiers/weather_state_notifier.dart';
+import 'package:new_weather/presentation/empty_state_screen.dart';
 import 'package:new_weather/presentation/search_bar.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -30,22 +31,25 @@ class WeatherScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('${data.location.name}' + ','),
-                      Text(data.location.country.toString()),
+                      // Text('${data.location.name}' + ','),
+                      // Text(data.location.country.toString()),
+                      Text(data.cityName),
+                      Text(data.countryName),
                     ],
                   ),
                   Text(
-                    data.current.tempC.toString(),
+                    data.tempC.toString(),
                   ),
                   // Image.network(
                   //   '${data.current.condition.icon}',
                   // ),
                   Image(
-                    image: NetworkImage('http:${data.current.condition.icon}'),
+                    //http dodati u mapper
+                    image: NetworkImage('http:${data.icon}'),
                     width: 64,
                     height: 64,
                   ),
-                  Text(data.current.condition.text.toString()),
+                  Text(data.text.toString()),
                 ],
               ),
             ],
@@ -59,8 +63,9 @@ class WeatherScreen extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
         initial: () {
-          return SizedBox();
+          return EmptyStateWidget();
         },
+        empty: () => EmptyStateWidget(),
       ),
     );
   }

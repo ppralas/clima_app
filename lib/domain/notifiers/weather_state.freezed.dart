@@ -22,6 +22,7 @@ mixin _$WeatherState {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$WeatherState {
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$WeatherState {
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
     TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$WeatherState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$WeatherState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$WeatherState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,12 +109,18 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WeatherState.initial'));
   }
 
   @override
@@ -127,6 +139,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
   }) {
     return initial();
   }
@@ -138,6 +151,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
   }) {
     return initial?.call();
   }
@@ -149,6 +163,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
     TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -164,6 +179,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
   }) {
     return initial(this);
   }
@@ -175,6 +191,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
   }) {
     return initial?.call(this);
   }
@@ -186,6 +203,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -216,12 +234,18 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WeatherState.loading'));
   }
 
   @override
@@ -240,6 +264,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
   }) {
     return loading();
   }
@@ -251,6 +276,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
   }) {
     return loading?.call();
   }
@@ -262,6 +288,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
     TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -277,6 +304,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
   }) {
     return loading(this);
   }
@@ -288,6 +316,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -299,6 +328,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -344,15 +374,23 @@ class __$$_FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
+class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   const _$_Failure(this.failure);
 
   @override
   final Failure failure;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.failure(failure: $failure)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherState.failure'))
+      ..add(DiagnosticsProperty('failure', failure));
   }
 
   @override
@@ -379,6 +417,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
   }) {
     return failure(this.failure);
   }
@@ -390,6 +429,7 @@ class _$_Failure implements _Failure {
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
   }) {
     return failure?.call(this.failure);
   }
@@ -401,6 +441,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
     TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -416,6 +457,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
   }) {
     return failure(this);
   }
@@ -427,6 +469,7 @@ class _$_Failure implements _Failure {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
   }) {
     return failure?.call(this);
   }
@@ -438,6 +481,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -487,15 +531,23 @@ class __$$_LoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
+class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   const _$_Loaded(this.weather);
 
   @override
   final Weather weather;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.loaded(weather: $weather)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherState.loaded'))
+      ..add(DiagnosticsProperty('weather', weather));
   }
 
   @override
@@ -522,6 +574,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
   }) {
     return loaded(weather);
   }
@@ -533,6 +586,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
   }) {
     return loaded?.call(weather);
   }
@@ -544,6 +598,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
     TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -559,6 +614,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
   }) {
     return loaded(this);
   }
@@ -570,6 +626,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
   }) {
     return loaded?.call(this);
   }
@@ -581,6 +638,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -597,4 +655,128 @@ abstract class _Loaded implements WeatherState {
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EmptyCopyWith<$Res> {
+  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
+      __$$_EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmptyCopyWithImpl<$Res>
+    extends _$WeatherStateCopyWithImpl<$Res, _$_Empty>
+    implements _$$_EmptyCopyWith<$Res> {
+  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Empty with DiagnosticableTreeMixin implements _Empty {
+  const _$_Empty();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WeatherState.empty()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WeatherState.empty'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) failure,
+    required TResult Function(Weather weather) loaded,
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Failure failure)? failure,
+    TResult? Function(Weather weather)? loaded,
+    TResult? Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? failure,
+    TResult Function(Weather weather)? loaded,
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Empty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Empty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements WeatherState {
+  const factory _Empty() = _$_Empty;
 }

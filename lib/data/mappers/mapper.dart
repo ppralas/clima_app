@@ -7,7 +7,10 @@ typedef EntityMapper<Entity, Response> = Entity Function(Response);
 final weatherEntityMapperProvider =
     Provider<EntityMapper<Weather, WeatherResponse>>(
   (ref) => (response) => Weather(
-        response.location,
-        response.current,
+        'http:' + response.current.condition.icon,
+        response.current.condition.text,
+        response.current.tempC,
+        response.location.country,
+        response.location.name,
       ),
 );

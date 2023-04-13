@@ -1,12 +1,25 @@
 import 'package:equatable/equatable.dart';
 import 'package:new_weather/data/model/weather_response.dart';
 
-class Weather extends Equatable {
-  final Location location;
-  final Current current;
+//entitet se formira iskljucivo po UI-u i gledam koje mi stvari trebaju da oformim ovaj ui, mogu primati string
 
-  Weather(this.location, this.current);
+class Weather extends Equatable {
+  // final Location location;
+  // final Current current;
+  final String cityName;
+  final String countryName;
+  final double tempC;
+  final String text;
+  final String icon;
+
+  Weather(this.cityName, this.countryName, this.tempC, this.text, this.icon);
 
   @override
-  List<Object?> get props => [location, current];
+  List<Object?> get props => [
+        cityName,
+        countryName,
+        tempC,
+        text,
+        icon,
+      ];
 }

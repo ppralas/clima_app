@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/data/model/repository.dart';
 import 'package:new_weather/domain/notifiers/weather_state.dart';
+import 'package:new_weather/presentation/empty_state_screen.dart';
 
 final weatherValueProvider =
     StateNotifierProvider<WeatherStateNotifier, WeatherState>((ref) =>
@@ -28,7 +29,7 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
     await debounce();
 
     //moram spremiti dodatni state u drugu varijablu u notifieru il weatherState.loading dodati parametar koji sadrzi listu i zbrojim liste
-    final result = await _weatherRepository.getWeather(query ?? 'Zagreb');
+    final result = await _weatherRepository.getWeather(query ?? '');
     //raspakiravanje rezultata
     result.fold(
       (error) => state = WeatherState.failure(error),
