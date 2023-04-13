@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/presentation/weather_screen.dart';
+import 'package:new_weather/presentation/empty_state_screen.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      home: WeatherScreen(),
+      home: EmptyStateWidget(),
     );
   }
 }
