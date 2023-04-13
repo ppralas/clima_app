@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:new_weather/data/model/weather_response.dart';
 
 //entitet se formira iskljucivo po UI-u i gledam koje mi stvari trebaju da oformim ovaj ui, mogu primati string
 
@@ -12,7 +11,13 @@ class Weather extends Equatable {
   final String text;
   final String icon;
 
-  Weather(this.cityName, this.countryName, this.tempC, this.text, this.icon);
+  const Weather(
+    this.cityName,
+    this.countryName,
+    this.tempC,
+    this.text,
+    this.icon,
+  );
 
   @override
   List<Object?> get props => [

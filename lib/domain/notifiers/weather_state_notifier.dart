@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/data/model/repository.dart';
 import 'package:new_weather/domain/notifiers/weather_state.dart';
-import 'package:new_weather/presentation/empty_state_screen.dart';
 
 final weatherValueProvider =
     StateNotifierProvider<WeatherStateNotifier, WeatherState>((ref) =>
@@ -15,7 +14,8 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
 
   final WeatherRepository _weatherRepository;
 
-  WeatherStateNotifier(this._weatherRepository) : super(WeatherState.initial());
+  WeatherStateNotifier(this._weatherRepository)
+      : super(const WeatherState.empty());
 
   void getWeather({String? query}) async {
     if (state.whenOrNull(
@@ -25,7 +25,7 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
       return;
     }
 
-    state = WeatherState.loading();
+    state = const WeatherState.loading();
     await debounce();
 
     //moram spremiti dodatni state u drugu varijablu u notifieru il weatherState.loading dodati parametar koji sadrzi listu i zbrojim liste

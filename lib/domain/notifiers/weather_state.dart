@@ -13,7 +13,6 @@ class WeatherState with _$WeatherState {
   const factory WeatherState.failure(Failure failure) = _Failure;
   //Za razliku od beer projekta ovdje samo objekt redajem ne slistu jer en cuvam listu prognoza
   const factory WeatherState.loaded(Weather weather) = _Loaded;
-  //TODO: Dodati empty state
   const factory WeatherState.empty() = _Empty;
 }
 

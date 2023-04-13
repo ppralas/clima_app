@@ -6,6 +6,8 @@ import 'package:new_weather/presentation/empty_state_screen.dart';
 import 'package:new_weather/presentation/search_bar.dart';
 
 class WeatherScreen extends ConsumerWidget {
+  const WeatherScreen({super.key});
+
   @override
   Widget build(
     BuildContext context,
@@ -15,7 +17,7 @@ class WeatherScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: SearchBar(),
+        title: const SearchBar(),
       ),
       //tu raspakiravam liniju 13
       body: state.when(
@@ -59,13 +61,13 @@ class WeatherScreen extends ConsumerWidget {
           log(failure.trace.toString());
           return Text(failure.error.toString());
         },
-        loading: () => Center(
+        loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
         initial: () {
-          return EmptyStateWidget();
+          return const EmptyStateWidget();
         },
-        empty: () => EmptyStateWidget(),
+        empty: () => const EmptyStateWidget(),
       ),
     );
   }
