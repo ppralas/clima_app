@@ -30,7 +30,7 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
 
   //   //moram spremiti dodatni state u drugu varijablu u notifieru il weatherState.loading dodati parametar koji sadrzi listu i zbrojim liste
   //   final result =
-  //       await _weatherRepository.getWeather(query ?? query.isEmpty);
+  //       await _weatherRepository.getWeather(query ?? '');
   //   //raspakiravanje rezultata
   //   result.fold(
   //     (error) => state = WeatherState.failure(error),
@@ -45,12 +45,12 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
     }
 
     if (query == null) {
-      state = WeatherState.initial();
+      state = const WeatherState.initial();
       return;
     }
 
     if (query.isEmpty) {
-      state = WeatherState.empty();
+      state = const WeatherState.empty();
       return;
     }
 
