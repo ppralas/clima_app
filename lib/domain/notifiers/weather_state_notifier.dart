@@ -17,23 +17,49 @@ class WeatherStateNotifier extends StateNotifier<WeatherState> {
   WeatherStateNotifier(this._weatherRepository)
       : super(const WeatherState.empty());
 
+  // void getWeather({String? query}) async {
+  //   if (state.whenOrNull(
+  //         loading: () => true,
+  //       ) ==
+  //       true) {
+  //     return;
+  //   }
+
+  //   state = const WeatherState.loading();
+  //   await debounce();
+
+  //   //moram spremiti dodatni state u drugu varijablu u notifieru il weatherState.loading dodati parametar koji sadrzi listu i zbrojim liste
+  //   final result =
+  //       await _weatherRepository.getWeather(query ?? query.isEmpty);
+  //   //raspakiravanje rezultata
+  //   result.fold(
+  //     (error) => state = WeatherState.failure(error),
+  //     //dohvat podatka weather
+  //     (weather) => state = WeatherState.loaded(weather),
+  //   );
+  // }
+
   void getWeather({String? query}) async {
-    if (state.whenOrNull(
-          loading: () => true,
-        ) ==
-        true) {
+    if (state.whenOrNull(loading: () => true) == true) {
+      return;
+    }
+
+    if (query == null) {
+      state = WeatherState.initial();
+      return;
+    }
+
+    if (query.isEmpty) {
+      state = WeatherState.empty();
       return;
     }
 
     state = const WeatherState.loading();
     await debounce();
 
-    //moram spremiti dodatni state u drugu varijablu u notifieru il weatherState.loading dodati parametar koji sadrzi listu i zbrojim liste
-    final result = await _weatherRepository.getWeather(query ?? '');
-    //raspakiravanje rezultata
+    final result = await _weatherRepository.getWeather(query);
     result.fold(
       (error) => state = WeatherState.failure(error),
-      //dohvat podatka weather
       (weather) => state = WeatherState.loaded(weather),
     );
   }

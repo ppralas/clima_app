@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/presentation/empty_state_screen.dart';
+import 'package:new_weather/presentation/weather_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
 //     super.initState();
 
 //     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-//       final value = await ref.read(apiClientProvider).getWeather('Zagreb');
+//       final value = await ref.read(apiClientProvider).getWeather('');
 //       print(value);
 //     });
 //   }
@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const MaterialApp(
-      home: EmptyStateWidget(),
+      home: WeatherScreen(),
     );
   }
 }

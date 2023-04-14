@@ -29,6 +29,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_svg: ^1.1.6
   either_dart: ^0.3.0
+  pretty_dio_logger: ^1.2.0-beta-1
 
 dev_dependencies:
   flutter_test:

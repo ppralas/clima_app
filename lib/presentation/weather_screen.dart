@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/domain/notifiers/weather_state_notifier.dart';
-import 'package:new_weather/presentation/empty_state_screen.dart';
 import 'package:new_weather/presentation/search_bar.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -30,44 +28,41 @@ class WeatherScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Text('${data.location.name}' + ','),
-                      // Text(data.location.country.toString()),
-                      Text(data.cityName),
-                      Text(data.countryName),
-                    ],
-                  ),
+                  Text(data.cityName),
+                  Text(data.countryName),
                   Text(
                     data.tempC.toString(),
                   ),
                   // Image.network(
                   //   '${data.current.condition.icon}',
                   // ),
-                  Image(
+                  Image.network(
                     //http dodati u mapper
-                    image: NetworkImage('http:${data.icon}'),
+                    data.icon,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Text('ne radi slika'),
                     width: 64,
                     height: 64,
                   ),
-                  Text(data.text.toString()),
+                  Text(data.text)
                 ],
               ),
             ],
           ),
         ),
         failure: (failure) {
-          log(failure.trace.toString());
           return Text(failure.error.toString());
         },
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
         initial: () {
-          return const EmptyStateWidget();
+          return const Center(
+              child: Text('Enter city name to start using the app!'));
         },
-        empty: () => const EmptyStateWidget(),
+        empty: () => const Center(
+          child: Text('Insert city name in search bar!'),
+        ),
       ),
     );
   }
