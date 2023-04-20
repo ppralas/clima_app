@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/data/api_client.dart';
-import 'package:new_weather/data/mappers/mapper.dart';
+import 'package:new_weather/data/utils/mapper.dart';
+import 'package:new_weather/data/weather_api_client.dart';
+import 'package:new_weather/data/mappers/weather_mapper.dart';
 import 'package:new_weather/data/model/weather_response.dart';
 import 'package:new_weather/domain/entities/failure.dart';
 import 'package:new_weather/domain/entities/weather.dart';

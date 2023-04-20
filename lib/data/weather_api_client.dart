@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/data/model/weather_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'api_client.g.dart';
+part 'weather_api_client.g.dart';
 
 final apiClientProvider = Provider(
   (ref) => WeatherValuesApiClient(

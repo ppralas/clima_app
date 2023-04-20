@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/domain/notifiers/weather_state_notifier.dart';
+import 'package:new_weather/presentation/form_page.dart';
 import 'package:new_weather/presentation/search_bar.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -44,7 +45,7 @@ class WeatherScreen extends ConsumerWidget {
                     width: 64,
                     height: 64,
                   ),
-                  Text(data.text)
+                  Text(data.text),
                 ],
               ),
             ],
@@ -57,8 +58,24 @@ class WeatherScreen extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
         initial: () {
-          return const Center(
-              child: Text('Enter city name to start using the app!'));
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Center(
+                  child: Text('Enter city name to start using the app!')),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FormPage(),
+                    ),
+                  );
+                },
+                child: const Text('Go to form page'),
+              ),
+            ],
+          );
         },
         empty: () => const Center(
           child: Text('Insert city name in search bar!'),
