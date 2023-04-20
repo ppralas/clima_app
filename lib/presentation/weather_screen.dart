@@ -68,7 +68,7 @@ class WeatherScreen extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FormPage(),
+                      builder: (context) => const FormPage(),
                     ),
                   );
                 },

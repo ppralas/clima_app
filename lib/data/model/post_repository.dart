@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/data/json_post_api_clinet.dart';
-import 'package:new_weather/data/mappers/weather_mapper.dart';
 import 'package:new_weather/data/mappers/post_mapper.dart';
 import 'package:new_weather/data/model/post_response.dart';
 import 'package:new_weather/data/utils/mapper.dart';
@@ -31,8 +30,8 @@ class PostRepositoryImpl extends PostRepository {
       final postResponse = await postApi.createPost(postRequest);
       final post = mapper.call(postResponse);
       return right(post);
-    } catch (error, StakTrace) {
-      return left(Failure(error, StakTrace));
+    } catch (error, stackTrace) {
+      return left(Failure(error, stackTrace));
     }
   }
 }

@@ -16,10 +16,8 @@ class PostResponse {
     required this.body,
   });
 
-  factory PostResponse.fromJson(Map<String, dynamic> json) => PostResponse(
-        id: json['id'],
-        userId: json['userId'],
-        title: json['title'],
-        body: json['body'],
-      );
+  factory PostResponse.fromJson(Map<String, dynamic> json) =>
+      _$PostResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PostResponseToJson(this);
 }

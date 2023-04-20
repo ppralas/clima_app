@@ -3,8 +3,6 @@ import 'package:equatable/equatable.dart';
 //entitet se formira iskljucivo po UI-u i gledam koje mi stvari trebaju da oformim ovaj ui, mogu primati string
 
 class Weather extends Equatable {
-  // final Location location;
-  // final Current current;
   final String cityName;
   final String countryName;
   final double tempC;

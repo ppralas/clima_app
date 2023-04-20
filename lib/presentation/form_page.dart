@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:new_weather/domain/entities/post.dart';
 import 'package:new_weather/domain/notifiers/post_state_notifier.dart';
 import 'package:new_weather/presentation/text_cntroller.dart';
 
@@ -30,7 +31,14 @@ class FormPage extends ConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              ref.read(postValueProvider.notifier).publishPost();
+              Post post = Post(
+                  id: 1,
+                  userId: 2,
+                  title: titleController.text,
+                  body: bodyController.text);
+
+              ref.read(postValueProvider.notifier).publishPost(post: post);
+              print(post);
             },
             child: const Text('Submit'),
           )
