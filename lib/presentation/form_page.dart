@@ -1,12 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/data/json_post_api_clinet.dart';
 import 'package:new_weather/domain/notifiers/post_state_notifier.dart';
-import 'package:new_weather/presentation/text_input_state.dart';
+import 'package:new_weather/presentation/text_cntroller.dart';
 
 class FormPage extends ConsumerWidget {
+  const FormPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //final client = ref.watch(postClientProvider);
@@ -21,11 +20,13 @@ class FormPage extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          const TextField(
-            decoration: InputDecoration(hintText: 'Title text'),
+          TextField(
+            decoration: const InputDecoration(hintText: 'Title text'),
+            controller: titleController,
           ),
-          const TextField(
-            decoration: InputDecoration(hintText: 'Body text'),
+          TextField(
+            decoration: const InputDecoration(hintText: 'Body text'),
+            controller: bodyController,
           ),
           ElevatedButton(
             onPressed: () {

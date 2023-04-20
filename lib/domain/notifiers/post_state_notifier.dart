@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:new_weather/data/model/post_repository.dart';
 import 'package:new_weather/domain/entities/post.dart';
 import 'package:new_weather/domain/notifiers/post_state.dart';
