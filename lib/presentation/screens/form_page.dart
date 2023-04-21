@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/data/model/post_repository.dart';
-import 'package:new_weather/domain/notifiers/post/post_state.dart';
 import 'package:new_weather/domain/notifiers/post/post_state_notifier.dart';
-
-final postValueProvider = StateNotifierProvider<PostStateNotifier, PostState>(
-    (ref) => PostStateNotifier(ref.watch(postRepositoryProvider)));
 
 class FormPage extends ConsumerStatefulWidget {
   final _titleController = TextEditingController();
