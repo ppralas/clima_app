@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/domain/notifiers/weather_state_notifier.dart';
-import 'package:new_weather/presentation/form_page.dart';
-import 'package:new_weather/presentation/search_bar.dart';
+import 'package:new_weather/domain/notifiers/weather/weather_state_notifier.dart';
+import 'package:new_weather/presentation/screens/form_page.dart';
+import 'package:new_weather/presentation/widgets/search_bar_widget.dart';
 
 class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
@@ -16,7 +16,7 @@ class WeatherScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const SearchBar(),
+        title: const SearchBarWidget(),
       ),
       //tu raspakiravam liniju 13
       body: state.when(
@@ -68,7 +68,7 @@ class WeatherScreen extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const FormPage(),
+                      builder: (context) => FormPage(),
                     ),
                   );
                 },

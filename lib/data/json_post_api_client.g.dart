@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_post_api_clinet.dart';
+part of 'json_post_api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator

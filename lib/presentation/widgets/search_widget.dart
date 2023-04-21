@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_weather/domain/notifiers/weather_state_notifier.dart';
+import 'package:new_weather/domain/notifiers/weather/weather_state_notifier.dart';
+import 'package:new_weather/presentation/screens/empty_state_screen.dart';
 
-class SearchBar extends ConsumerWidget {
-  const SearchBar({
+class SearchWidget extends ConsumerWidget {
+  final Color iconColor = Colors.white;
+  final Color cursorColor = Colors.white;
+  final Color textColor = Colors.white;
+
+  const SearchWidget({
     super.key,
   });
 
@@ -11,15 +16,18 @@ class SearchBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextField(
       autofocus: true,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(
+        color: textColor,
+      ),
       textCapitalization: TextCapitalization.words,
       keyboardType: TextInputType.text,
-      cursorColor: Colors.white,
+      cursorColor: cursorColor,
       onChanged: (query) {
         if (query.length > 3) {
           ref.read(weatherValueProvider.notifier).getWeather(query: query);
         } else if (query.isEmpty) {
-          ref.read(weatherValueProvider.notifier).getWeather();
+          //ref.read(weatherValueProvider.notifier).getWeather();
+          const EmptyStateWidget();
         }
       },
       enableSuggestions: true,
@@ -28,13 +36,13 @@ class SearchBar extends ConsumerWidget {
         hintStyle: TextStyle(
           color: Colors.blue.shade100,
         ),
-        icon: const Icon(
+        icon: Icon(
           Icons.search,
-          color: Colors.white,
+          color: iconColor,
         ),
         border: InputBorder.none,
       ),
     );
   }
-  //debounce metoda koja ceka dok korisnik nije prestao upisivat da se api zove samo jednom
 }
+  //debounce metoda koja ceka dok korisnik nije prestao upisivat da se api zove samo jednom

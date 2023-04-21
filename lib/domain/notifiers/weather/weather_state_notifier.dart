@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/data/model/repository.dart';
-import 'package:new_weather/domain/notifiers/weather_state.dart';
+import 'package:new_weather/domain/notifiers/weather/weather_state.dart';
 
 final weatherValueProvider =
     StateNotifierProvider<WeatherStateNotifier, WeatherState>((ref) =>

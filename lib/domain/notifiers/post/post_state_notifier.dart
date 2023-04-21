@@ -1,6 +1,6 @@
 import 'package:new_weather/data/model/post_repository.dart';
 import 'package:new_weather/domain/entities/post.dart';
-import 'package:new_weather/domain/notifiers/post_state.dart';
+import 'package:new_weather/domain/notifiers/post/post_state.dart';
 import 'package:riverpod/riverpod.dart';
 
 final postValueProvider = StateNotifierProvider<PostStateNotifier, PostState>(
@@ -14,7 +14,8 @@ class PostStateNotifier extends StateNotifier<PostState> {
           const PostState.empty(),
         );
 
-  void publishPost({required Post post}) async {
+  void publishPost({required String title, required String body}) async {
+    final post = Post(id: 1, userId: 2, title: title, body: body);
     final result = await _postRepository.createPost(post);
     result.fold(
         // state u svakoj od linija ispod updatea state
