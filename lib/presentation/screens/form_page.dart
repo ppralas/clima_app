@@ -1,6 +1,43 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/domain/notifiers/post/post_state_notifier.dart';
+
+final formPageProvider =
+    StateNotifierProvider.autoDispose<FormPageStateNotifier, FormPageState>(
+        (ref) => FormPageStateNotifier(ref));
+
+class FormPageStateNotifier extends StateNotifier<FormPageState> {
+  Ref ref;
+  FormPageStateNotifier(this.ref) : super(const FormPageState());
+
+  void validateForm(String title, String body) {
+    final isTitleEmpty = title.isEmpty;
+    final isBodyEmpty = body.isEmpty;
+
+    state = state.copyWith(isFormValid: !isTitleEmpty && !isBodyEmpty);
+  }
+
+  void submitForm(String title, String body) {
+    if (state.isFormValid) {
+      ref
+          .watch(postValueProvider.notifier)
+          .publishPost(body: body, title: title);
+      print('submitted');
+    }
+  }
+}
+
+class FormPageState {
+  final bool isFormValid;
+
+  const FormPageState({this.isFormValid = false});
+
+  FormPageState copyWith({bool? isFormValid}) {
+    return FormPageState(isFormValid: isFormValid ?? this.isFormValid);
+  }
+}
 
 class FormPage extends ConsumerStatefulWidget {
   final _titleController = TextEditingController();
@@ -13,23 +50,12 @@ class FormPage extends ConsumerStatefulWidget {
 }
 
 class _FormPageState extends ConsumerState<FormPage> {
-  bool _isFormValid = false;
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     widget._titleController.dispose();
     widget._bodyController.dispose();
     super.dispose();
-  }
-
-  void _validateForm() {
-    final isTitleEmpty = widget._titleController.text.isEmpty;
-    final isBodyEmpty = widget._bodyController.text.isEmpty;
-
-    setState(() {
-      _isFormValid = !isTitleEmpty && !isBodyEmpty;
-    });
   }
 
   @override
@@ -47,25 +73,33 @@ class _FormPageState extends ConsumerState<FormPage> {
           TextField(
             decoration: const InputDecoration(hintText: 'Title text'),
             controller: widget._titleController,
-            onChanged: (_) => _validateForm(),
+            onChanged: (value) {
+              ref
+                  .read(formPageProvider.notifier)
+                  .validateForm(value, widget._bodyController.text);
+            },
           ),
           TextField(
             decoration: const InputDecoration(hintText: 'Body text'),
             controller: widget._bodyController,
-            onChanged: (_) => _validateForm(),
+            onChanged: (value) {
+              ref
+                  .read(formPageProvider.notifier)
+                  .validateForm(widget._titleController.text, value);
+            },
           ),
           ElevatedButton(
-            onPressed: _isFormValid
+            onPressed: ref.watch(formPageProvider).isFormValid
                 ? () {
-                    ref.watch(postValueProvider.notifier).publishPost(
-                          body: '',
-                          title: '',
-                        );
-                    print('submited');
+                    ref.read(formPageProvider.notifier).submitForm(
+                        widget._titleController.text,
+                        widget._bodyController.text);
                   }
                 : null,
             style: ElevatedButton.styleFrom(
-              backgroundColor: _isFormValid ? Colors.blue : Colors.grey,
+              backgroundColor: ref.watch(formPageProvider).isFormValid
+                  ? Colors.blue
+                  : Colors.grey,
             ),
             child: const Text('Submit'),
           )
