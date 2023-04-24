@@ -3,21 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_weather/domain/notifiers/post/is_form_valid_provider.dart';
-import 'package:new_weather/domain/notifiers/post/post_state_notifier.dart';
 
 final formPageProvider =
     StateNotifierProvider.autoDispose<FormPageStateNotifier, FormPageState>(
         (ref) => FormPageStateNotifier(ref));
-
-class FormPageState {
-  final bool isFormValid;
-
-  const FormPageState({this.isFormValid = false});
-
-  FormPageState copyWith({bool? isFormValid}) {
-    return FormPageState(isFormValid: isFormValid ?? this.isFormValid);
-  }
-}
 
 class FormPage extends ConsumerStatefulWidget {
   final _titleController = TextEditingController();
@@ -53,7 +42,7 @@ class _FormPageState extends ConsumerState<FormPage> {
           TextField(
             decoration: InputDecoration(
               hintText: 'Title text',
-              errorText: ref.watch(formPageProvider).isFormValid
+              errorText: ref.watch(formPageProvider).isTitleValid
                   ? null
                   : 'Title is required',
             ),
@@ -67,7 +56,7 @@ class _FormPageState extends ConsumerState<FormPage> {
           TextField(
             decoration: InputDecoration(
               hintText: 'Body text',
-              errorText: ref.watch(formPageProvider).isFormValid
+              errorText: ref.watch(formPageProvider).isBodyValid
                   ? null
                   : 'Body is required',
             ),
@@ -79,15 +68,16 @@ class _FormPageState extends ConsumerState<FormPage> {
             },
           ),
           ElevatedButton(
-            onPressed: ref.watch(formPageProvider).isFormValid
+            onPressed: ref.watch(formPageProvider).isBodyValid
                 ? () {
                     ref.read(formPageProvider.notifier).submitForm(
-                        widget._titleController.text,
-                        widget._bodyController.text);
+                          widget._titleController.text,
+                          widget._bodyController.text,
+                        );
                   }
                 : null,
             style: ElevatedButton.styleFrom(
-              backgroundColor: ref.watch(formPageProvider).isFormValid
+              backgroundColor: ref.watch(formPageProvider).isTitleValid
                   ? Colors.blue
                   : Colors.grey,
             ),
