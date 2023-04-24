@@ -2,32 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:new_weather/domain/notifiers/post/is_form_valid_provider.dart';
 import 'package:new_weather/domain/notifiers/post/post_state_notifier.dart';
 
 final formPageProvider =
     StateNotifierProvider.autoDispose<FormPageStateNotifier, FormPageState>(
         (ref) => FormPageStateNotifier(ref));
-
-class FormPageStateNotifier extends StateNotifier<FormPageState> {
-  Ref ref;
-  FormPageStateNotifier(this.ref) : super(const FormPageState());
-
-  void validateForm(String title, String body) {
-    final isTitleEmpty = title.isEmpty;
-    final isBodyEmpty = body.isEmpty;
-
-    state = state.copyWith(isFormValid: !isTitleEmpty && !isBodyEmpty);
-  }
-
-  void submitForm(String title, String body) {
-    if (state.isFormValid) {
-      ref
-          .watch(postValueProvider.notifier)
-          .publishPost(body: body, title: title);
-      print('submitted');
-    }
-  }
-}
 
 class FormPageState {
   final bool isFormValid;
