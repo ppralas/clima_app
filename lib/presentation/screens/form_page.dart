@@ -71,7 +71,12 @@ class _FormPageState extends ConsumerState<FormPage> {
       body: Column(
         children: [
           TextField(
-            decoration: const InputDecoration(hintText: 'Title text'),
+            decoration: InputDecoration(
+              hintText: 'Title text',
+              errorText: ref.watch(formPageProvider).isFormValid
+                  ? null
+                  : 'Title is required',
+            ),
             controller: widget._titleController,
             onChanged: (value) {
               ref
@@ -80,7 +85,12 @@ class _FormPageState extends ConsumerState<FormPage> {
             },
           ),
           TextField(
-            decoration: const InputDecoration(hintText: 'Body text'),
+            decoration: InputDecoration(
+              hintText: 'Body text',
+              errorText: ref.watch(formPageProvider).isFormValid
+                  ? null
+                  : 'Body is required',
+            ),
             controller: widget._bodyController,
             onChanged: (value) {
               ref
@@ -102,7 +112,7 @@ class _FormPageState extends ConsumerState<FormPage> {
                   : Colors.grey,
             ),
             child: const Text('Submit'),
-          )
+          ),
         ],
       ),
     );

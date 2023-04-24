@@ -1,35 +1,48 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:new_weather/domain/notifiers/post/post_state_notifier.dart';
 
-class PostFormState {
-  final bool isTitleEmpty;
-  final bool isBodyEmpty;
+class FormPageState {
+  final bool isTitleValid;
+  final bool isBodyValid;
 
-  PostFormState({
-    required this.isTitleEmpty,
-    required this.isBodyEmpty,
+  const FormPageState({
+    this.isTitleValid = false,
+    this.isBodyValid = false,
   });
+
+  FormPageState copyWith({
+    bool? isTitleValid,
+    bool? isBodyValid,
+    required bool isFormValid,
+  }) {
+    return FormPageState(
+      isTitleValid: isTitleValid ?? this.isTitleValid,
+      isBodyValid: isBodyValid ?? this.isBodyValid,
+    );
+  }
 }
 
-class PostFormStateNotifier extends StateNotifier<PostFormState> {
-  final TextEditingController titleController;
-  final TextEditingController bodyController;
+class FormPageStateNotifier extends StateNotifier<FormPageState> {
+  Ref ref;
+  FormPageStateNotifier(this.ref) : super(const FormPageState());
 
-  PostFormStateNotifier({
-    required this.titleController,
-    required this.bodyController,
-  }) : super(PostFormState(
-          isTitleEmpty: titleController.text.isEmpty,
-          isBodyEmpty: bodyController.text.isEmpty,
-        ));
+  void validateForm(String title, String body) {
+    final isTitleEmpty = title.isEmpty;
+    final isBodyEmpty = body.isEmpty;
 
-  void validateForm() {
-    final isTitleEmpty = titleController.text.isEmpty;
-    final isBodyEmpty = bodyController.text.isEmpty;
-
-    state = PostFormState(
-      isTitleEmpty: isTitleEmpty,
-      isBodyEmpty: isBodyEmpty,
+    state = state.copyWith(
+      isTitleValid: !isTitleEmpty,
+      isBodyValid: !isBodyEmpty,
+      isFormValid: !isTitleEmpty && !isBodyEmpty,
     );
+  }
+
+  void submitForm(String title, String body) {
+    if (state.isTitleValid && state.isBodyValid) {
+      ref
+          .watch(postValueProvider.notifier)
+          .publishPost(body: body, title: title);
+      print('submitted');
+    }
   }
 }
