@@ -52,11 +52,8 @@ class _FormPageState extends ConsumerState<FormPage> {
                 }
                 return null;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Title text',
-                errorText: ref.watch(formPageProvider).isTitleValid
-                    ? null
-                    : 'Title is required',
               ),
               controller: widget._titleController,
               onChanged: (value) {
@@ -75,11 +72,8 @@ class _FormPageState extends ConsumerState<FormPage> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Body text',
-                  errorText: ref.watch(formPageProvider).isBodyValid
-                      ? null
-                      : 'Body is required',
                 ),
                 controller: widget._bodyController,
                 onChanged: (value) {
