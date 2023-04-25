@@ -19,9 +19,10 @@ class FormPage extends ConsumerStatefulWidget {
 }
 
 class _FormPageState extends ConsumerState<FormPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     widget._titleController.dispose();
     widget._bodyController.dispose();
     super.dispose();
@@ -37,53 +38,87 @@ class _FormPageState extends ConsumerState<FormPage> {
         ),
         title: const Text('Weather screen'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Title text',
-              errorText: ref.watch(formPageProvider).isTitleValid
-                  ? null
-                  : 'Title is required',
+      body: Form(
+        key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFormField(
+              // Validator tu prima text kojeg je user unio u formtextfield
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: 'Title text',
+                errorText: ref.watch(formPageProvider).isTitleValid
+                    ? null
+                    : 'Title is required',
+              ),
+              controller: widget._titleController,
+              onChanged: (value) {
+                ref
+                    .read(formPageProvider.notifier)
+                    .validateForm(value, widget._bodyController.text);
+              },
             ),
-            controller: widget._titleController,
-            onChanged: (value) {
-              ref
-                  .read(formPageProvider.notifier)
-                  .validateForm(value, widget._bodyController.text);
-            },
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Body text',
-              errorText: ref.watch(formPageProvider).isBodyValid
-                  ? null
-                  : 'Body is required',
-            ),
-            controller: widget._bodyController,
-            onChanged: (value) {
-              ref
-                  .read(formPageProvider.notifier)
-                  .validateForm(widget._titleController.text, value);
-            },
-          ),
-          ElevatedButton(
-            onPressed: ref.watch(formPageProvider).isBodyValid
-                ? () {
-                    ref.read(formPageProvider.notifier).submitForm(
-                          widget._titleController.text,
-                          widget._bodyController.text,
-                        );
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                //Ista stvar ko na liniji 47
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
                   }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ref.watch(formPageProvider).isTitleValid
-                  ? Colors.blue
-                  : Colors.grey,
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Body text',
+                  errorText: ref.watch(formPageProvider).isBodyValid
+                      ? null
+                      : 'Body is required',
+                ),
+                controller: widget._bodyController,
+                onChanged: (value) {
+                  ref
+                      .read(formPageProvider.notifier)
+                      .validateForm(value, widget._bodyController.text);
+                },
+              ),
             ),
-            child: const Text('Submit'),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: ref.watch(formPageProvider).isBodyValid &&
+                          ref.watch(formPageProvider).isTitleValid
+                      ? () {
+                          if (_formKey.currentState!.validate()) {
+                            //ako je forma validna prikazem snackbar
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Submitam Datu'),
+                              ),
+                            );
+                          }
+                          print('Submitted');
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ref.watch(formPageProvider).isBodyValid &&
+                            ref.watch(formPageProvider).isTitleValid
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  child: const Text('Submit'),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
