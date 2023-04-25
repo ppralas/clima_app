@@ -59,7 +59,7 @@ class _FormPageState extends ConsumerState<FormPage> {
               onChanged: (value) {
                 ref
                     .read(formPageProvider.notifier)
-                    .validateForm(value, widget._bodyController.text);
+                    .validateForm(_formKey.currentState!.validate());
               },
             ),
             Padding(
@@ -79,7 +79,7 @@ class _FormPageState extends ConsumerState<FormPage> {
                 onChanged: (value) {
                   ref
                       .read(formPageProvider.notifier)
-                      .validateForm(value, widget._bodyController.text);
+                      .validateForm(_formKey.currentState!.validate());
                 },
               ),
             ),
@@ -87,8 +87,7 @@ class _FormPageState extends ConsumerState<FormPage> {
               padding: const EdgeInsets.only(top: 16.0),
               child: Center(
                 child: ElevatedButton(
-                  onPressed: ref.watch(formPageProvider).isBodyValid &&
-                          ref.watch(formPageProvider).isTitleValid
+                  onPressed: ref.watch(formPageProvider).isFormValid
                       ? () {
                           if (_formKey.currentState!.validate()) {
                             //ako je forma validna prikazem snackbar
@@ -102,8 +101,7 @@ class _FormPageState extends ConsumerState<FormPage> {
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: ref.watch(formPageProvider).isBodyValid &&
-                            ref.watch(formPageProvider).isTitleValid
+                    backgroundColor: ref.watch(formPageProvider).isFormValid
                         ? Colors.blue
                         : Colors.grey,
                   ),
